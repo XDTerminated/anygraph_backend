@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: anygraph-backend
+    env: python
+    plan: free
+    buildCommand: pip install uv && uv sync
+    startCommand: uv run uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NEONDB_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
