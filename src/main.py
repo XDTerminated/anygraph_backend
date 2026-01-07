@@ -84,12 +84,12 @@ def read_root():
 @app.get("/health")
 def health_check():
     db_status = test_connection()
-    docker_status = get_executor().test_docker()
+    executor_status = get_executor().test_docker()  # Method name kept for backwards compatibility
 
     return {
-        "status": "healthy" if db_status else "unhealthy",
+        "status": "healthy" if (db_status and executor_status) else "unhealthy",
         "database": "connected" if db_status else "disconnected",
-        "docker": "available" if docker_status else "unavailable",
+        "executor": "available" if executor_status else "unavailable",
         "timestamp": datetime.utcnow().isoformat()
     }
 

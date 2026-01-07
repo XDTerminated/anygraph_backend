@@ -6,12 +6,6 @@
 uv sync
 ```
 
-## Docker
-
-```bash
-docker build -t anygraph-executor:latest docker/
-```
-
 ## Environment Variables
 
 Create `.env`:
